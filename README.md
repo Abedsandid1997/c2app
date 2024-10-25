@@ -35,6 +35,11 @@ Before running the project, make sure you have **Python** installed on your mach
 ```bash
 python --version
 ```
+### Clone the repositories
+  Verify Python installation:
+```bash
+git clone https://github.com/Abedsandid1997/c2app
+```
 
 ### Requierments
 Once Python is installed, install the dependencies from the requirements.txt file using the following command:
