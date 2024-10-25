@@ -1,0 +1,96 @@
+{% include 'header.html' %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+   
+{% if messages %}
+
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+         {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+
+{% endif %}
+{% endwith %}
+<div class="container" role="main">
+    <div class="page-header">
+        <h2>{{device[2]}} files</h2>
+    </div>
+
+    <div class="container">
+
+        <form id="files" action="">
+            <input id="device" type="hidden" name="id" value="{{device[1]}}">
+            <input type="hidden" id="command" name="command" placeholder="Enter command">
+            <button type="submit" class="btn btn-primary">
+                <i aria-hidden="true"></i>Show Files
+            </button>
+        </form>
+        <form role="form" method="POST" action="{{url_for('download')}}">
+            <input id="device" type="hidden" name="id" value="{{device[1]}}">
+            <input type="text" id="file" name="file" placeholder="Enter file name" required>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i> Download file
+            </button>
+        </form>
+
+        
+        <div id="Files-output" style="margin-top: 20px;">
+            
+            <h2>Files</h2>
+            <pre id="output"></pre> 
+        </div>
+    </div>
+</div>
+    
+    {% include 'footer.html' %}
+
+ <!-- Include Socket.IO library -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+ <script type="text/javascript">
+     var socket = io.connect('http://localhost:5000');
+
+     // Handle the form submission
+     document.getElementById('files').onsubmit = function(e) {
+         e.preventDefault();
+         var device_id = document.getElementById('device').value;
+
+         // Send the command via a POST request
+         fetch('/request_file_list', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/x-www-form-urlencoded',
+             },
+             body: new URLSearchParams({
+                 'id': device_id
+             })
+         })
+         .then(response => response.json())
+         .then(data => {
+             console.log('Command sent:', data);
+         });
+     };
+
+     // Receive real-time command results from the server
+     socket.on('send_file_result', function(data) {
+        var output = document.getElementById('output'); // Hämta elementet där vi vill visa filerna
+        output.innerHTML = ''; // Töm innehållet om det fanns något tidigare
+    
+        var fileList = data.files; // Antag att data.files är en lista med filer
+    
+        // Skapa en oordnad lista för att visa filerna
+        var ul = document.createElement('ul');
+    
+        // Iterera över filerna och skapa en <li> för varje fil
+        fileList.forEach(function(file) {
+            var li = document.createElement('li');
+            li.innerText = file; // Lägg till filnamnet som text i <li>
+            ul.appendChild(li);  // Lägg till <li> i <ul>
+        });
+    
+        // Lägg till den skapade <ul> i output-elementet
+        output.appendChild(ul);
+    });
+ </script>

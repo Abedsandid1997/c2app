@@ -1,0 +1,26 @@
+{% include 'header.html' %}
+
+<div class="container" role="main">
+    <div class="page-header">
+        <h2>Server Logs</h2>
+    </div>
+
+    <div class="log-container" style="max-height: 400px; overflow-y: scroll; background-color: #f5f5f5; padding: 20px; border-radius: 5px;">
+        <pre>
+            {% for line in logs %}
+                {% if 'ERROR' in line %}
+                    <span style="color: red;">{{ line }}</span>
+                {% elif 'WARNING' in line %}
+                    <span style="color: orange;">{{ line }}</span>
+                {% elif 'INFO' in line %}
+                    <span style="color: green;">{{ line }}</span>
+                {% else %}
+                    <span>{{ line }}</span>
+                {% endif %}
+            {% endfor %}
+        </pre>
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,65 @@
+{% include 'header.html' %}
+
+<div class="container" role="main">
+    <div class="page-header">
+        
+    </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">User</th>
+            <th scope="col">OS</th>
+            <th scope="col">Last update</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+    </thead>
+    <tbody>
+      {% for device in devices %}
+      <tr>
+          <td>{{ device[0] }}</td>
+          <td>{{ device[2] }}</td>
+          <td>{{ device[3] }}</td>
+          <td>{{ device[6] }}</td>
+          <td class="green {% if device[9] == 'offline' %}red{% endif %}">{{ device[9] }}</td>
+          <td> 
+              <form role="form" method="POST" action="{{ url_for('remove_device_route') }}" style="display:inline;">
+                  <button type="submit" class="fa fa-trash-o" name="id" value={{ device[0] }} aria-hidden="true"> </button>
+              </form>
+
+              <form role="form" method="GET" action="{{ url_for('show_files')}}" style="display:inline;">
+                <button type="submit" class="fa fa-download {% if device[9] == 'offline' %}disabled{% endif %}" name="id" value={{ device[1] }} aria-hidden="true"> </button>
+            </form>
+              
+            
+
+              <form role="form" method="GET" action="{{ url_for('upload')}}" style="display:inline;">
+                <button type="submit" class="fa fa-upload {% if device[9] == 'offline' %}disabled{% endif %}" name="id" value={{ device[1] }} aria-hidden="true"> </button>
+            </form>
+
+            
+
+              <form role="form" method="GET" action="{{ url_for('send_command')}}" style="display:inline;">
+                <button type="submit" class="fa fa-paper-plane {% if device[9] == 'offline' %}disabled{% endif %}" name="id" value={{ device[1] }} aria-hidden="true"> </button>
+            </form>
+
+              
+          </td>
+          <td>
+            <form role="form" method="GET" action="{{ url_for('device_details')}}" style="display:inline;">
+              <button type="submit" class="fa fa-eye" name="id" value={{ device[1] }} aria-hidden="true"> </button>
+          </form>
+
+
+             
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% include 'footer.html' %}

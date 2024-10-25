@@ -1,0 +1,17 @@
+body {
+    padding-top: 4em;
+    padding-bottom: 2em;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.green{
+    background-color: green;
+}
+
+.red{
+    background-color: red !important;
+}
