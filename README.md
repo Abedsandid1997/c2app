@@ -10,7 +10,7 @@ The server can also run commands on client machines, transfer files, and receive
 
 
 ## Overview Image
-![C2 App Overview](images/c2_app.png)
+![C2 App Overview](./images/c2_app.png)
 
 ## How to Use
 
@@ -31,23 +31,23 @@ Before running the project, make sure you have **Python** installed on your mach
 - **For Windows**:  
   Go to the official Python website and download Python: [Download Python](https://www.python.org/downloads/)
 
-Verify Python installation:
+  Verify Python installation:
 ```bash
 python --version
 ```
 
 ### Requierments
     Once Python is installed, install the dependencies from the requirements.txt file using the following command:
-    ```bash
-    pip3 install -r requirements.txt
-    ```
+```bash
+pip3 install -r requirements.txt
+```
 
 ### Build
 No specific build steps are required for this project. Just ensure all dependencies are installed using the command above.
 
 
 ### Tests
-    To run Unittests:
+To run Unittests:
 - **Client**:
 1. Navigate to the client directory:
 ```bash
