@@ -33,7 +33,7 @@ Before running the project, make sure you have **Python** installed on your mach
 
   Verify Python installation:
 ```bash
-python --version
+python3 --version
 ```
 ### Clone the repositories
 
