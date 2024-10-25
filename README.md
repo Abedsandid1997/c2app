@@ -10,7 +10,7 @@ The server can also run commands on client machines, transfer files, and receive
 
 
 ## Overview Image
-![C2 App Overview](./images/c2_app.png)
+![C2App](./images/c2_app.png)
 
 ## How to Use
 
@@ -37,7 +37,7 @@ python --version
 ```
 
 ### Requierments
-    Once Python is installed, install the dependencies from the requirements.txt file using the following command:
+Once Python is installed, install the dependencies from the requirements.txt file using the following command:
 ```bash
 pip3 install -r requirements.txt
 ```
