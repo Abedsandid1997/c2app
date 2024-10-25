@@ -46,6 +46,11 @@ Once Python is installed, install the dependencies from the requirements.txt fil
 ```bash
 pip3 install -r requirements.txt
 ```
+### Note
+- if it doesn't work on powershell (windows) run this code:
+```bash
+python3 -m pip install flask-socketio
+```
 
 ### Build
 No specific build steps are required for this project. Just ensure all dependencies are installed using the command above.
