@@ -36,7 +36,7 @@ Before running the project, make sure you have **Python** installed on your mach
 python --version
 ```
 ### Clone the repositories
-  Verify Python installation:
+
 ```bash
 git clone https://github.com/Abedsandid1997/c2app
 ```
